@@ -1,7 +1,7 @@
 DEPENDPATH += .
 INCLUDEPATH += .
 TEMPLATE = app
-QT += network gui declarative
+QT += network gui widgets
 
 SOURCES += \
     main.cpp \
