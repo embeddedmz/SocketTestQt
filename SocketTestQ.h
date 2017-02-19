@@ -4,6 +4,7 @@
 #include <QtGui>
 #include <QtNetwork>
 #include <QtWidgets>
+#include <QSslSocket>
 
 #include "tcpportlist.h"
 #include "udpportlist.h"
@@ -33,7 +34,9 @@ private slots:
     void ClientSaveLogFile();
     void ClientClearLogFile();
     void ClientSendFile();
-    void WarnSecure();
+    void CheckSSLSupport();
+    void SocketEncrypted();
+    void SslErrors(const QList<QSslError>& listErrors);
 
     // Server
     void ServerListen();
@@ -73,7 +76,9 @@ private:
     QByteArray* m_ServerByteArray;
 
     // Used by Client
-    QTcpSocket* m_ServerSocket;
+    bool        m_bSecure;
+    QString     m_qstrCipher;
+    QSslSocket* m_ServerSocket; // QSslSocket can behave as a normal QTcpSocket with no overhead
     QByteArray* m_ClientByteArray;
 
     // Used by UDP

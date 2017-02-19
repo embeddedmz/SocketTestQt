@@ -5,18 +5,18 @@
 #define my_delete(x) {delete x; x = 0;}
 
 SocketTestQ::SocketTestQ(QWidget *parent) :
-    QWidget(parent), ui(new Ui::SocketTestQ)
+    QWidget(parent),
+    ui(new Ui::SocketTestQ),
+    m_bSecure(false)
 {
     // ************** Miscellaneous
     // **************
-
     ui->setupUi(this);
     setFixedSize(geometry().width(),geometry().height());
     //setWindowTitle(tr("SocketTestQ v 1.0.0"));
 
     // ************** Server
     // **************
-
     m_Server = new QTcpServer(this);
     m_ClientSocket = 0;
     m_ServerByteArray = new QByteArray();
@@ -39,8 +39,8 @@ SocketTestQ::SocketTestQ(QWidget *parent) :
 
     // ************** Client
     // ************** autoconnect has been used for a few client's widgets
-
-    m_ServerSocket = new QTcpSocket(this);
+    m_ServerSocket = new QSslSocket(this);
+    m_ServerSocket->setPeerVerifyMode(QSslSocket::VerifyNone);
     m_ClientByteArray = new QByteArray();
 
     // Connection between signals and slots of non-gui elements (network communication)
@@ -48,6 +48,9 @@ SocketTestQ::SocketTestQ(QWidget *parent) :
     connect(m_ServerSocket, SIGNAL(connected()), this, SLOT(ClientConnected()));
     connect(m_ServerSocket, SIGNAL(disconnected()), this, SLOT(ClientDisconnected()));
     connect(m_ServerSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(SocketError(QAbstractSocket::SocketError)));
+    /* used only in Secure Mode */
+    connect(m_ServerSocket, SIGNAL(encrypted()), this, SLOT(SocketEncrypted()));
+    connect(m_ServerSocket, SIGNAL(sslErrors(QList<QSslError>)), this, SLOT(SslErrors(QList<QSslError>)));
 
     // Connection between signals and slots of buttons
     connect(ui->uiClientPortListBtn, SIGNAL(clicked()), this, SLOT(ShowTCPPortList()));
@@ -56,11 +59,10 @@ SocketTestQ::SocketTestQ(QWidget *parent) :
     connect(ui->uiClientSendFileBtn, SIGNAL(clicked()), this, SLOT(ClientSendFile()));
     connect(ui->uiClientSaveLogBtn, SIGNAL(clicked()), this, SLOT(ClientSaveLogFile()));
     connect(ui->uiClientClearLogBtn, SIGNAL(clicked()), this, SLOT(ClientClearLogFile()));
+    connect(ui->uiClientSecureCheck, SIGNAL(clicked()), this, SLOT(CheckSSLSupport()));
 
-    connect(ui->uiClientSecureCheck, SIGNAL(clicked()), this, SLOT(WarnSecure()));
     // ************** UDP
     // **************
-
     m_UDPSocket = new QUdpSocket(this);
     m_UDPByteArray = new QByteArray();
 
@@ -308,16 +310,54 @@ void SocketTestQ::ServerSendFile()
 // Connection attempt to a server
 void SocketTestQ::on_uiClientConnectBtn_clicked()
 {
-    if(m_ServerSocket->isOpen())
+    //bool bUnconnected = !m_ServerSocket || m_ServerSocket->state() == QAbstractSocket::UnconnectedState;
+    bool bConnected = m_ServerSocket->state() == QAbstractSocket::ConnectedState; // no need to check for nullptr.
+    if (bConnected) // m_ServerSocket->isOpen()
     {
         m_ServerSocket->close();
         return;
     }
 
+    m_bSecure = (ui->uiClientSecureCheck->isChecked()) ? true : false;
+
     ui->uiClientLog->append(tr("<em>Attempting to connect...</em>"));
 
     m_ServerSocket->abort(); // disable previous connections if they exist
-    m_ServerSocket->connectToHost(ui->uiClientDstIP->text(), ui->uiClientDstPort->value()); // connection to the requested server
+
+    if (m_bSecure)
+    {
+        /* connection to the requested SSL/TLS server */
+        m_ServerSocket->connectToHostEncrypted(ui->uiClientDstIP->text(), ui->uiClientDstPort->value());
+    }
+    else
+    {
+        /* connection to the requested unencrypted server */
+        m_ServerSocket->connectToHost(ui->uiClientDstIP->text(), ui->uiClientDstPort->value());
+    }
+}
+
+void SocketTestQ::SocketEncrypted()
+{
+    if (!m_bSecure)
+        return;
+
+    QSslSocket* pSocket = qobject_cast<QSslSocket*>(m_ServerSocket);
+    if (pSocket == 0)
+        return; // or might have disconnected already
+
+    QSslCipher ciph = pSocket->sessionCipher();
+    m_qstrCipher = QString("%1, %2 (%3/%4)").arg(ciph.authenticationMethod())
+                     .arg(ciph.name()).arg(ciph.usedBits()).arg(ciph.supportedBits());
+
+    ui->uiClientGroupBoxConnection->setTitle( tr("Connected To < ") + (m_ServerSocket->peerAddress()).toString()
+                                              + ((m_bSecure) ? (tr(" > Cipher : ") + m_qstrCipher) : tr(" > Unencrypted")) );
+}
+
+void SocketTestQ::SslErrors(const QList<QSslError>& listErrors)
+{
+    listErrors; // unreferenced_parameter
+
+    m_ServerSocket->ignoreSslErrors();
 }
 
 // Sending msg to server
@@ -402,7 +442,8 @@ void SocketTestQ::ClientConnected()
 {
     ui->uiClientLog->append(tr("<em>Connected !</em>"));
     ui->uiClientConnectBtn->setText(tr("Disconnect"));
-    ui->uiClientGroupBoxConnection->setTitle(tr("Connected To < ") + (m_ServerSocket->peerAddress()).toString() +tr(" >"));
+    if (!m_bSecure)
+        ui->uiClientGroupBoxConnection->setTitle(tr("Connected To < ") + (m_ServerSocket->peerAddress()).toString() +tr(" >"));
     ui->uiClientSendMsgBtn->setEnabled(true);
     ui->uiClientSendFileBtn->setEnabled(true);
     ui->uiClientBrowseBtn->setEnabled(true);
@@ -662,7 +703,14 @@ SocketTestQ::~SocketTestQ()
     delete m_ClientByteArray;
 }
 
-void SocketTestQ::WarnSecure()
+void SocketTestQ::CheckSSLSupport()
 {
-    QMessageBox::information(this, tr("Secure Mode"), tr("Will be available in the next version !"));
+    if (!QSslSocket::supportsSsl())
+    {
+        QMessageBox::information(0, "Secure Socket Client",
+                                    "This system does not support OpenSSL.");
+
+        ui->uiClientSecureCheck->setEnabled(false);
+        ui->uiClientSecureCheck->setChecked(false);
+    }
 }
