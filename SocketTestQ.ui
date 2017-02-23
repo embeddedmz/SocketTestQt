@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SocketTestQ v 1.0</string>
+   <string>SocketTestQ v 2.0beta</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Image.qrc">
