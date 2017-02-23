@@ -6,6 +6,7 @@
 #include <QtWidgets>
 #include <QSslSocket>
 
+#include "csslserver.h"
 #include "tcpportlist.h"
 #include "udpportlist.h"
 
@@ -20,6 +21,11 @@ class SocketTestQ : public QWidget
 public:
     explicit SocketTestQ(QWidget *parent = 0);
     ~SocketTestQ();
+
+    static QSsl::SslProtocol             s_eSSLProtocol;
+    static QSslSocket::PeerVerifyMode    s_eSSLVerifyMode;
+    static QString                       s_qstrCertFile;
+    static QString                       s_qstrKeyFile; // musn't require a passphrase
 
 private slots:
     // Client
@@ -50,6 +56,9 @@ private slots:
     void ServerClearLogFile();
     void ServerSendFile();
     void WarnHex();
+    void CheckSSLServerSetup();
+    void PrivateKeyDialog();
+    void CertDialog();
 
     void ShowTCPPortList();
     void ShowUDPPortList();
@@ -63,6 +72,15 @@ private slots:
     void UDPSaveLogFile();
     void UDPClearLogFile();
 
+// communication with CSSLServer
+public slots:
+    void ProcessSSLReceivedData(QByteArray SSLByteArray);
+    void onSSLClientDisconnected();
+    void onNewSSLClient(QSslSocket*);
+
+signals:
+    void SendSSLData(const QByteArray&);
+    void DisconnectSSLClient();
 
 private:
     Ui::SocketTestQ *ui;
@@ -70,7 +88,9 @@ private:
     UDPPortList m_UDPPortList;
 
     // Used by Server
+    bool        m_bSecureServer;
     QTcpServer* m_Server;
+    CSSLServer* m_pSecureServer;
     QTcpSocket* m_ClientSocket;
     //QHash<QTcpSocket*,QByteArray*> m_ClientSockets; // for a future version ;) a client list will be dynamically created
     QByteArray* m_ServerByteArray;

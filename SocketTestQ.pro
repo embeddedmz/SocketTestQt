@@ -7,12 +7,14 @@ SOURCES += \
     main.cpp \
     SocketTestQ.cpp \
     tcpportlist.cpp \
-    udpportlist.cpp
+    udpportlist.cpp \
+    csslserver.cpp
 
 HEADERS += \
     SocketTestQ.h \
     tcpportlist.h \
-    udpportlist.h
+    udpportlist.h \
+    csslserver.h
 
 FORMS += \
     SocketTestQ.ui \

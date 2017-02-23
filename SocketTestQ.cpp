@@ -4,10 +4,16 @@
 #define MAX_HOSTNAME_LENGTH     255
 #define my_delete(x) {delete x; x = 0;}
 
+QSsl::SslProtocol             SocketTestQ::s_eSSLProtocol = QSsl::AnyProtocol;
+QSslSocket::PeerVerifyMode    SocketTestQ::s_eSSLVerifyMode = QSslSocket::VerifyNone;
+QString                       SocketTestQ::s_qstrCertFile;
+QString                       SocketTestQ::s_qstrKeyFile;
+
 SocketTestQ::SocketTestQ(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SocketTestQ),
-    m_bSecure(false)
+    m_bSecure(false), // client
+    m_bSecureServer(false)
 {
     // ************** Miscellaneous
     // **************
@@ -18,6 +24,7 @@ SocketTestQ::SocketTestQ(QWidget *parent) :
     // ************** Server
     // **************
     m_Server = new QTcpServer(this);
+    m_pSecureServer = new CSSLServer(this);
     m_ClientSocket = 0;
     m_ServerByteArray = new QByteArray();
 
@@ -33,9 +40,15 @@ SocketTestQ::SocketTestQ(QWidget *parent) :
     connect(ui->uiServerClearLogBtn, SIGNAL(clicked()), this, SLOT(ServerClearLogFile()));
     connect(ui->uiServerDisconnectBtn, SIGNAL(clicked()), this, SLOT(DisconnectClient()));
     connect(ui->uiServerRadioHex, SIGNAL(clicked()), this, SLOT(WarnHex()));
+    connect(ui->uiServerSecure, SIGNAL(clicked()), this, SLOT(CheckSSLServerSetup()));
+    connect(ui->uiBtnLoadKey, SIGNAL(clicked()), this, SLOT(PrivateKeyDialog()));
+    connect(ui->uiBtnLoadCert, SIGNAL(clicked()), this, SLOT(CertDialog()));
 
     // Connection between signals and slots of non-gui elements (network communication)
     connect(m_Server, SIGNAL(newConnection()), this, SLOT(NewClient()));
+    // SSL
+    connect(this, SIGNAL(DisconnectSSLClient()), m_pSecureServer, SLOT(SSLClientDisconnect()));
+    connect(this, SIGNAL(SendSSLData(const QByteArray&)), m_pSecureServer, SLOT(onSSLSendData(const QByteArray&)));
 
     // ************** Client
     // ************** autoconnect has been used for a few client's widgets
@@ -50,7 +63,7 @@ SocketTestQ::SocketTestQ(QWidget *parent) :
     connect(m_ServerSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(SocketError(QAbstractSocket::SocketError)));
     /* used only in Secure Mode */
     connect(m_ServerSocket, SIGNAL(encrypted()), this, SLOT(SocketEncrypted()));
-    connect(m_ServerSocket, SIGNAL(sslErrors(QList<QSslError>)), this, SLOT(SslErrors(QList<QSslError>)));
+    connect(m_ServerSocket, SIGNAL(sslErrors(const QList<QSslError>&)), this, SLOT(SslErrors(const QList<QSslError>&)));
 
     // Connection between signals and slots of buttons
     connect(ui->uiClientPortListBtn, SIGNAL(clicked()), this, SLOT(ShowTCPPortList()));
@@ -86,11 +99,17 @@ SocketTestQ::SocketTestQ(QWidget *parent) :
 
 void SocketTestQ::ServerListen()
 {
-    if(m_Server->isListening())
+    ui->uiServerSecure->setEnabled(false);
+    m_bSecureServer = (ui->uiServerSecure->isChecked()) ? true : false;
+    QTcpServer* pCurrentServer = (m_bSecureServer) ? m_pSecureServer : m_Server;
+
+    if(pCurrentServer->isListening())
     {
-        m_Server->close();
+        pCurrentServer->close();
         ui->uiServerListenBtn->setText( tr("Start Listening") );
-        ui->uiServerLog->append(tr("Server stopped"));
+        (!m_bSecureServer) ? ui->uiServerLog->append(tr("Server stopped"))
+                           : ui->uiServerLog->append(tr("SSL Server stopped"));
+        ui->uiServerSecure->setEnabled(true);
         return;
     }
 
@@ -98,19 +117,24 @@ void SocketTestQ::ServerListen()
     {
         QHostAddress ServerAddress(ui->uiServerIP->text()); // if this ctor is not explicit, we can put the text directly on listen()
 
-        if ( !m_Server->listen(ServerAddress, ui->uiServerPort->value() ) )
+        if ( !pCurrentServer->listen(ServerAddress, ui->uiServerPort->value() ) )
         {
-            QMessageBox::critical(this, tr("Server Error"), tr("Server couldn't start. Reason :<br />") + m_Server->errorString());
+            QMessageBox::critical(this, (m_bSecureServer) ? tr("Secure Server Error") : tr("Server Error"),
+                                        tr("Server couldn't start. Reason :<br />") + pCurrentServer->errorString());
+            ui->uiServerSecure->setEnabled(true);
         }
         else
         {
             ui->uiServerListenBtn->setText( tr("Stop Listening") );
-            ui->uiServerLog->append(tr("Server Started\r\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"));
+            ui->uiServerLog->append((m_bSecureServer) ? tr("Secure Server Started\r\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~") :
+                                                        tr("Server Started\r\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"));
         }
     }
     else
     {
-        QMessageBox::critical(this, tr("TCP Server Error"), tr("IP address / hostname is too long !"));
+        QMessageBox::critical(this, (m_bSecureServer) ? tr("Secure TCP Server Error") : tr("TCP Server Error"),
+                                    tr("IP address / hostname is too long !"));
+        ui->uiServerSecure->setEnabled(true);
     }
 }
 
@@ -153,17 +177,24 @@ void SocketTestQ::ClientDisconnect()
 
 void SocketTestQ::DisconnectClient()
 {
-    if(m_ClientSocket)
+    if(!m_bSecureServer)
     {
-        m_ClientSocket->deleteLater();
-        ui->uiServerSendMsgBtn->setEnabled(false);
-        ui->uiServerSendFileBtn->setEnabled(false);
-        ui->uiServerBrowseBtn->setEnabled(false);
-        ui->uiServerDisconnectBtn->setEnabled(false);
-        m_ClientSocket = 0;
-        ui->uiServerGroupBoxConnection->setTitle( tr("Connected Client : < NONE >") );
-        ui->uiServerLog->append(tr("Server closed client connection."));
+        if (m_ClientSocket)
+        {
+            m_ClientSocket->deleteLater();
+            ui->uiServerSendMsgBtn->setEnabled(false);
+            ui->uiServerSendFileBtn->setEnabled(false);
+            ui->uiServerBrowseBtn->setEnabled(false);
+            ui->uiServerDisconnectBtn->setEnabled(false);
+            m_ClientSocket = 0;
+            ui->uiServerGroupBoxConnection->setTitle( tr("Connected Client : < NONE >") );
+            ui->uiServerLog->append(tr("Server closed client connection."));
+        }
+        return;
     }
+
+    // SSL
+    emit DisconnectSSLClient();
 }
 
 // TODO : store rcvd data in a file for next version
@@ -234,9 +265,13 @@ void SocketTestQ::ServerSendMsg()
         }
     }
 
-    m_ClientSocket->write(packet);
+    if (!m_bSecureServer)
+        m_ClientSocket->write(packet);
+    else
+        emit SendSSLData(packet);
 
-    ui->uiServerLog->append("S: " + ui->uiServerMsg->text());
+    (!m_bSecureServer) ? ui->uiServerLog->append("[=>] : " + ui->uiServerMsg->text())
+                       : ui->uiServerLog->append("[Encrypted =>] : " + ui->uiServerMsg->text());
     ui->uiServerMsg->setText("");
 }
 
@@ -298,10 +333,14 @@ void SocketTestQ::ServerSendFile()
 
         QByteArray packet = file.readAll();
 
-        m_ClientSocket->write(packet);
+        if (!m_bSecureServer)
+            m_ClientSocket->write(packet);
+        else
+            emit SendSSLData(packet);
 
         file.close();
-        ui->uiServerLog->append("S: File was sent to connected client.");
+        (!m_bSecureServer) ? ui->uiServerLog->append("[=>] File was sent to connected client.")
+                           : ui->uiServerLog->append("[=>] File was sent to connected SSL client.");
     }
 }
 
@@ -326,6 +365,13 @@ void SocketTestQ::on_uiClientConnectBtn_clicked()
 
     if (m_bSecure)
     {
+        m_ServerSocket->setProtocol(s_eSSLProtocol);
+        m_ServerSocket->setPeerVerifyMode(s_eSSLVerifyMode);
+
+        /* Set the certificate and private key. */
+        m_ServerSocket->setLocalCertificate(s_qstrCertFile);
+        m_ServerSocket->setPrivateKey(s_qstrKeyFile);
+
         /* connection to the requested SSL/TLS server */
         m_ServerSocket->connectToHostEncrypted(ui->uiClientDstIP->text(), ui->uiClientDstPort->value());
     }
@@ -344,6 +390,9 @@ void SocketTestQ::SocketEncrypted()
     QSslSocket* pSocket = qobject_cast<QSslSocket*>(m_ServerSocket);
     if (pSocket == 0)
         return; // or might have disconnected already
+
+    // get the peer's certificate
+    //QSslCertificate certCli = pSocket->peerCertificate();
 
     QSslCipher ciph = pSocket->sessionCipher();
     m_qstrCipher = QString("%1, %2 (%3/%4)").arg(ciph.authenticationMethod())
@@ -404,7 +453,7 @@ void SocketTestQ::on_uiClientSendMsgBtn_clicked()
 
     m_ServerSocket->write(packet);
 
-    ui->uiClientLog->append("S: " + ui->uiClientMsg->text());
+    ui->uiClientLog->append("[=>] : " + ui->uiClientMsg->text());
     ui->uiClientMsg->clear();
     ui->uiClientMsg->setFocus(); // set the focus inside it
 }
@@ -531,7 +580,7 @@ void SocketTestQ::ClientSendFile()
         m_ServerSocket->write(packet);
 
         file.close();
-        ui->uiClientLog->append("S: File was sent to server.");
+        ui->uiClientLog->append("[=>] File was sent to server.");
     }
 }
 
@@ -610,7 +659,7 @@ void SocketTestQ::UDPSendMsg()
 
     m_UDPSocket->writeDatagram(packet, QHostAddress(ui->uiUdpClientIp->text()), ui->uiUdpClientPort->value());
 
-    ui->uiUdpLog->append("S: " + ui->uiUdpMsg->text());
+    ui->uiUdpLog->append("[=>] : " + ui->uiUdpMsg->text());
     ui->uiUdpMsg->clear();
 }
 
@@ -665,7 +714,7 @@ void SocketTestQ::UDPSendFile()
         m_UDPSocket->writeDatagram(packet, QHostAddress(ui->uiUdpClientIp->text()), ui->uiUdpClientPort->value());
 
         file.close();
-        ui->uiUdpLog->append("S: File was sent.");
+        ui->uiUdpLog->append("[=>] File was sent.");
     }
 }
 
@@ -712,5 +761,174 @@ void SocketTestQ::CheckSSLSupport()
 
         ui->uiClientSecureCheck->setEnabled(false);
         ui->uiClientSecureCheck->setChecked(false);
+
+        return;
     }
+
+    // enryption files are not mandatory for an SSL/TLS client.
+    s_qstrKeyFile = ui->uiKeyFileCli->text();
+    s_qstrCertFile = ui->uiCertFileCli->text();
+
+    switch (ui->uiCBProtocolCli->currentIndex())
+    {
+        default:
+        case 0:
+            s_eSSLProtocol = QSsl::AnyProtocol; // auto: SSLv2, SSLv3, or TLSv1.0
+            break;
+        case 1: // SSLv2
+            s_eSSLProtocol = QSsl::SslV2;
+            break;
+        case 2: // SSLv3
+            s_eSSLProtocol = QSsl::SslV3;
+            break;
+        case 3: // TLSv1.0
+            s_eSSLProtocol = QSsl::TlsV1_0;
+            break;
+    }
+
+    switch (ui->uiCBVerifyModeCli->currentIndex())
+    {
+        default:
+        case 0:
+            s_eSSLVerifyMode = QSslSocket::VerifyNone;
+            break;
+        case 1:
+            s_eSSLVerifyMode = QSslSocket::QueryPeer;
+            break;
+        case 2:
+            s_eSSLVerifyMode = QSslSocket::VerifyPeer;
+            break;
+        case 3:
+            s_eSSLVerifyMode = QSslSocket::AutoVerifyPeer;
+            break;
+    }
+}
+
+void SocketTestQ::CheckSSLServerSetup()
+{
+    if (!QSslSocket::supportsSsl())
+    {
+        QMessageBox::information(0, "Secure Socket Server",
+                                    "This system does not support OpenSSL.");
+
+        ui->uiServerSecure->setEnabled(false);
+        ui->uiServerSecure->setChecked(false);
+        return;
+    }
+
+    // Check if the required files's paths are indicated and warn user if there's a problem...
+    if (ui->uiKeyFile->text().isEmpty())
+    {
+        QMessageBox::information(0, "Secure Socket Server",
+                                    "You didn't indicate private key's file path. Go to SSL Settings.");
+        ui->uiServerSecure->setChecked(false);
+        return;
+    }
+    CSSLServer::s_qstrKeyFile = ui->uiKeyFile->text();
+
+    if (ui->uiCertFile->text().isEmpty())
+    {
+        QMessageBox::information(0, "Secure Socket Server",
+                                    "You didn't indicate server's certificate file path. Go to SSL Settings.");
+        ui->uiServerSecure->setChecked(false);
+        return;
+    }
+    CSSLServer::s_qstrCertFile = ui->uiCertFile->text();
+
+    switch (ui->uiCBProtocol->currentIndex())
+    {
+        default:
+        case 0:
+            /* The socket understands SSLv2, SSLv3, and TLSv1.0.
+             * This value is used by QSslSocket only.*/
+            CSSLServer::s_eSSLProtocol = QSsl::AnyProtocol;
+            break;
+        case 1: // SSLv2
+            CSSLServer::s_eSSLProtocol = QSsl::SslV2;
+            break;
+        case 2: // SSLv3
+            CSSLServer::s_eSSLProtocol = QSsl::SslV3;
+            break;
+        case 3: // TLSv1.0
+            CSSLServer::s_eSSLProtocol = QSsl::TlsV1_0;
+            break;
+    }
+
+    switch (ui->uiCBVerifyMode->currentIndex())
+    {
+        /* QSslSocket will not request a certificate from the peer.
+         * You can set this mode if you are not interested in the identity of the other side of the connection.
+         * The connection will still be encrypted, and your socket will still send its local certificate
+         * to the peer if it's requested.
+         */
+        default:
+        case 0:
+            CSSLServer::s_eSSLVerifyMode = QSslSocket::VerifyNone;
+            break;
+
+        /* QSslSocket will request a certificate from the peer, but does not require this certificate to be valid.
+         * This is useful when you want to display peer certificate details to the user without affecting
+         * the actual SSL handshake.
+         * This mode is the default for servers.
+         */
+        case 1:
+            CSSLServer::s_eSSLVerifyMode = QSslSocket::QueryPeer;
+            break;
+
+        /* QSslSocket will request a certificate from the peer during the SSL handshake phase, and requires
+         * that this certificate is valid. On failure, QSslSocket will emit the QSslSocket::sslErrors() signal.
+         * This mode is the default for clients.
+         */
+        case 2:
+            CSSLServer::s_eSSLVerifyMode = QSslSocket::VerifyPeer;
+            break;
+
+        /* QSslSocket will automatically use QueryPeer for server sockets and VerifyPeer for client sockets.
+         */
+        case 3:
+            CSSLServer::s_eSSLVerifyMode = QSslSocket::AutoVerifyPeer;
+            break;
+    }
+}
+
+void SocketTestQ::PrivateKeyDialog()
+{
+    ui->uiKeyFile->setText(QFileDialog::getOpenFileName(this, tr("Choose a private key file"), QString(), "*.*"));
+}
+
+void SocketTestQ::CertDialog()
+{
+    ui->uiCertFile->setText(QFileDialog::getOpenFileName(this, tr("Choose a certificate file"), QString(), "*.*"));
+}
+
+void SocketTestQ::ProcessSSLReceivedData(QByteArray SSLByteArray)
+{
+    if(ui->uiServerRadioHex->isChecked())
+    {
+        ui->uiServerLog->append(QString(SSLByteArray.toHex()));
+    }
+    else
+    {
+        ui->uiServerLog->append(QString(SSLByteArray));
+    }
+}
+
+void SocketTestQ::onSSLClientDisconnected()
+{
+    ui->uiServerSendMsgBtn->setEnabled(false);
+    ui->uiServerSendFileBtn->setEnabled(false);
+    ui->uiServerBrowseBtn->setEnabled(false);
+    ui->uiServerDisconnectBtn->setEnabled(false);
+    ui->uiServerGroupBoxConnection->setTitle( tr("Connected Client : < NONE >") );
+    ui->uiServerLog->append(tr("SSL Client closed conection."));
+}
+
+void SocketTestQ::onNewSSLClient(QSslSocket* pSocket)
+{
+    ui->uiServerGroupBoxConnection->setTitle( tr("Connected SSL Client : < ") + (pSocket->peerAddress()).toString() +tr(" >") );
+    ui->uiServerLog->append(tr("New SSL Client addr: ") + (pSocket->peerAddress()).toString());
+    ui->uiServerSendMsgBtn->setEnabled(true);
+    ui->uiServerSendFileBtn->setEnabled(true);
+    ui->uiServerBrowseBtn->setEnabled(true);
+    ui->uiServerDisconnectBtn->setEnabled(true);
 }

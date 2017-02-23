@@ -361,7 +361,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>SocketTestQ v 1.0</string>
+      <string>SocketTestQ v 2.0</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_31">
@@ -687,6 +687,19 @@
        <number>65535</number>
       </property>
      </widget>
+     <widget class="QCheckBox" name="uiServerSecure">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>60</y>
+        <width>121</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Secure Server</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QLabel" name="label_12">
      <property name="geometry">
@@ -698,7 +711,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>SocketTestQ v 1.0</string>
+      <string>SocketTestQ v 2.0</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_30">
@@ -849,7 +862,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>SocketTestQ v 1.0</string>
+      <string>SocketTestQ v 2.0</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="groupBox_10">
@@ -1128,6 +1141,426 @@
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="uiSSL">
+    <attribute name="title">
+     <string>SSL/TLS Settings</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>230</y>
+       <width>761</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Server's Encryption Files</string>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>741</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QLabel" name="label_27">
+           <property name="text">
+            <string>Private key</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="uiKeyFile"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="uiBtnLoadKey">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_28">
+           <property name="text">
+            <string>Certificate</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="uiCertFile"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="uiBtnLoadCert">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label_26">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>10</y>
+       <width>541</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>The SSL related files's paths are reloaded each time you check the box &quot;Secure Server&quot;.</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_33">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>40</y>
+       <width>481</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Private Key must not require a passphrase.</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_34">
+     <property name="geometry">
+      <rect>
+       <x>690</x>
+       <y>30</y>
+       <width>81</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_35">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>100</y>
+       <width>121</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>SocketTestQ v 2.0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_36">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel { color : red; }</string>
+     </property>
+     <property name="text">
+      <string>Warning :</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>321</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Server's Encryption Settings</string>
+     </property>
+     <widget class="QComboBox" name="uiCBProtocol">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>50</y>
+        <width>111</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Any Protocol</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SSLv2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SSLv3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>TLSv1.0</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_37">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>50</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Protocol</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_38">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Peer Verify Mode</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="uiCBVerifyMode">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>80</y>
+        <width>111</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Verify None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Query Peer</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Verify Peer</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Auto Verify Peer</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>350</y>
+       <width>761</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Client's Encryption Files</string>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>741</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <item>
+          <widget class="QLabel" name="label_39">
+           <property name="text">
+            <string>Private key</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="uiKeyFileCli"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="uiBtnLoadKeyCli">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <item>
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>Certificate</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="uiCertFileCli"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="uiBtnLoadCertCli">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_11">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>80</y>
+       <width>321</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Client's Encryption Settings</string>
+     </property>
+     <widget class="QComboBox" name="uiCBProtocolCli">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>50</y>
+        <width>111</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Any Protocol</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SSLv2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SSLv3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>TLSv1.0</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_41">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>50</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Protocol</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_42">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Peer Verify Mode</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="uiCBVerifyModeCli">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>80</y>
+        <width>111</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Verify None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Query Peer</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Verify Peer</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Auto Verify Peer</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+   </widget>
    <widget class="QWidget" name="uiAbout">
     <attribute name="title">
      <string>About</string>
@@ -1161,7 +1594,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Version : 1.0</string>
+      <string>Version : 2.0</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_15">
@@ -1252,18 +1685,32 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;A C++/Qt powered tool for socket testing. It can create both TCP and UDP client or server. It can be used to test any server or client that uses TCP or UDP protocol to communicate.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;A C++/Qt powered tool for socket testing. It can create both TCP and UDP client or server with or without SSL/TLS. It can be used to test any server or client that uses TCP or UDP protocol with or without SSL/TLS to communicate.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;It was tested under Windows 10 and Ubuntu 16.04 LTS.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Inspired from SocketTest v 3.0.0 (developed in Java). I developed this tool because in SocketTest we can't send files and we are limited to CRLF terminated strings whereas in some cases we need to send null terminated strings and we can't create an SSL/TLS server.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Inspired from SocketTest v 3.0.0 (developed in Java). I developed this tool because in SocketTest we can't send files and we are limited to CRLF terminated strings whereas in some cases we need to send null terminated strings. But it is also an attempt to show that with C++/Qt we can build interesting applications in no time... and much more faster than those built with Java ;)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Otherwise, it is also an attempt to show that with C++/Qt we can build interesting applications in no time... and much more faster than those built with Java ;)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Don't hesitate to email me for any suggestion.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Blog : https://mmzoughi.wordpress.com/&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Don't hesitate to email me for any suggestion.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="uiBtnLoadCA">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>956</x>
+     <y>292</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Browse</string>
+   </property>
   </widget>
  </widget>
  <resources>
