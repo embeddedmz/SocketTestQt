@@ -461,7 +461,8 @@ void SocketTestQ::on_uiClientSendMsgBtn_clicked()
 // Pressing "Enter" has the same effect than clicking on "Send" button
 void SocketTestQ::on_uiClientMsg_returnPressed()
 {
-    on_uiClientSendMsgBtn_clicked();
+    if (ui->uiClientSendMsgBtn->isEnabled())
+        on_uiClientSendMsgBtn_clicked();
 }
 
 // packet received or a sub-packet
