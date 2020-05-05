@@ -6,1712 +6,1721 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>809</width>
-    <height>504</height>
+    <width>900</width>
+    <height>598</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SocketTestQ v 2.0beta</string>
+   <string>SocketTestQ v2.0</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Image.qrc">
     <normaloff>:/Picture/original icons/ethernet.png</normaloff>:/Picture/original icons/ethernet.png</iconset>
   </property>
-  <widget class="QTabWidget" name="uiPanel">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>791</width>
-     <height>491</height>
-    </rect>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <widget class="QWidget" name="uiClient">
-    <attribute name="title">
-     <string>Client</string>
-    </attribute>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>651</width>
-       <height>101</height>
-      </rect>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QTabWidget" name="uiPanel">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <property name="title">
-      <string>Connect To</string>
-     </property>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>IP Address</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="uiClientDstIP">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>30</y>
-        <width>521</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>127.0.0.1</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>60</y>
-        <width>61</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiClientPortListBtn">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>60</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiClientConnectBtn">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>60</y>
-        <width>91</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Connect</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="uiClientSecureCheck">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>60</y>
-        <width>161</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Secure</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="uiClientDstPort">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>60</y>
-        <width>151</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>1</number>
-      </property>
-      <property name="maximum">
-       <number>65535</number>
-      </property>
-      <property name="value">
-       <number>21</number>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="uiClientGroupBoxConnection">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>120</y>
-       <width>771</width>
-       <height>331</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use bytes represented in hexadecimal notation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="title">
-      <string>Connected To &lt; NONE &gt;</string>
-     </property>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>741</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Conversation with Host</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::AutoText</enum>
-      </property>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>210</y>
-        <width>661</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Send</string>
-      </property>
-      <widget class="QWidget" name="verticalLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>641</width>
-         <height>91</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Message</string>
+     <widget class="QWidget" name="uiClient">
+      <attribute name="title">
+       <string>Client</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="ConnectionWidgetsClient">
+         <property name="title">
+          <string>Connect To</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="uiClientDstPort">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+            <property name="value">
+             <number>21</number>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLineEdit" name="uiClientMsg">
-            <property name="maxLength">
-             <number>65536</number>
+          <item row="0" column="1" colspan="4">
+           <widget class="QLineEdit" name="uiClientDstIP">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>127.0.0.1</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="uiClientSendMsgBtn">
-            <property name="enabled">
-             <bool>false</bool>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="uiClientPortListBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
-             <string>Send</string>
+             <string>Port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QCheckBox" name="uiClientSecureCheck">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Secure</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>IP Address</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QPushButton" name="uiClientConnectBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Connect</string>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <property name="spacing">
-           <number>1</number>
-          </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QWidget" name="LogoClientTab" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QRadioButton" name="uiClientRadioHex">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Hexadecimal mode : use 0..9 or A..F (or lower case letters) symbols to write the message. Nothing will be added at the end of the message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
+           <widget class="QLabel" name="label_31">
             <property name="text">
-             <string>Hexadecimal</string>
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="uiClientRadioNull">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Appends a zero (0x00 or commonly know \0) at the end of the message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
+           <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>Null-terminated string</string>
+             <string>SocketTestQ v 2.0</string>
             </property>
-            <property name="checked">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QGroupBox" name="uiClientGroupBoxConnection">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use bytes represented in hexadecimal notation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="title">
+          <string>Connected To &lt; NONE &gt;</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="1" column="0" colspan="2">
+           <widget class="QTextEdit" name="uiClientLog">
+            <property name="readOnly">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QRadioButton" name="uiClientRadioChars">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nothing will be added at the end of the message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="uiClientSaveLogBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
-             <string>No terminated string</string>
+             <string>Save</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QRadioButton" name="uiClientRadioCRLF">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Appends Carriage Return Line Feed (or commonly know as \r\n, two bytes 0x0D and 0x0A) at the end of the message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <item row="3" column="1">
+           <widget class="QPushButton" name="uiClientClearLogBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
-             <string>CRLF terminated string</string>
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" rowspan="2">
+           <widget class="QGroupBox" name="groupBox_3">
+            <property name="title">
+             <string>Send</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_4">
+             <item row="0" column="1" colspan="6">
+              <widget class="QLineEdit" name="uiClientMsg">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maxLength">
+                <number>65536</number>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="6">
+              <widget class="QPushButton" name="uiClientBrowseBtn">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Browse</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" colspan="5">
+              <widget class="QLineEdit" name="uiClientFile">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QRadioButton" name="uiClientRadioNull">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Appends a zero (0x00 or commonly know \0) at the end of the message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>'\0'</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Message</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_4">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>File</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="7">
+              <widget class="QPushButton" name="uiClientSendFileBtn">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Send File</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="7">
+              <widget class="QPushButton" name="uiClientSendMsgBtn">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Send</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QRadioButton" name="uiClientRadioChars">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nothing will be added at the end of the message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>No termination</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QRadioButton" name="uiClientRadioCRLF">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Appends Carriage Return Line Feed (or commonly know as \r\n, two bytes 0x0D and 0x0A) at the end of the message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>CRLF</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QRadioButton" name="uiClientRadioLF">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>LF</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QRadioButton" name="uiClientRadioHex">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Hexadecimal mode : use 0..9 or A..F (or lower case letters) symbols to write the message. Nothing will be added at the end of the message.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Hexadecimal</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Conversation with Host</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QLabel" name="label_4">
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="uiServer">
+      <attribute name="title">
+       <string>Server</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_12">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="ConnectionWidgetsServer">
+         <property name="title">
+          <string>Listen On</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="6" column="2">
+           <widget class="QPushButton" name="uiServerPortListBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>File</string>
+             <string>Port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QSpinBox" name="uiServerPort">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="3">
+           <widget class="QPushButton" name="uiServerListenBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Start Listening</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>IP Address</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="6">
+           <widget class="QLineEdit" name="uiServerIP">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>127.0.0.1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="6">
+           <widget class="QCheckBox" name="uiServerSecure">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Secure Server</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QWidget" name="LogoClientTab_3" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QLabel" name="label_34">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="uiClientFile"/>
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>SocketTestQ v 2.0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="uiClientBrowseBtn">
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QGroupBox" name="uiServerGroupBoxConnection">
+         <property name="title">
+          <string>Connected Client : &lt; NONE &gt;</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Conversation with Client</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QTextEdit" name="uiServerLog">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QPushButton" name="uiServerDisconnectBtn">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Disconnect</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="uiServerSaveLogBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QPushButton" name="uiServerClearLogBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" rowspan="3">
+           <widget class="QGroupBox" name="groupBox_5">
+            <property name="title">
+             <string>Send</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
+             <property name="rightMargin">
+              <number>9</number>
+             </property>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>File</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QRadioButton" name="uiServerRadioHex">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Hexadecimal</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QRadioButton" name="uiServerRadioNull">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>'\0'</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Message</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="6">
+              <widget class="QPushButton" name="uiServerBrowseBtn">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Browse</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QRadioButton" name="uiServerRadioCRLF">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>CRLF</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QRadioButton" name="uiServerRadioChars">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>No termination</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="7">
+              <widget class="QPushButton" name="uiServerSendMsgBtn">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Send</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="6">
+              <widget class="QLineEdit" name="uiServerMsg">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maxLength">
+                <number>65536</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QRadioButton" name="uiServerRadioLF">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>LF</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="7">
+              <widget class="QPushButton" name="uiServerSendFileBtn">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Send File</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" colspan="5">
+              <widget class="QLineEdit" name="uiServerFile">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="uiUDP">
+      <attribute name="title">
+       <string>UDP</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_13">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="ConnectionWidgetsUDP">
+         <property name="title">
+          <string>Server</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_19">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>IP Address</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="3">
+           <widget class="QLineEdit" name="uiUdpServerIp">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>127.0.0.1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_20">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="uiUdpServerPort">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="uiUdpServerPortListBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QPushButton" name="uiUdpServerListenBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Start Listening</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QWidget" name="LogoClientTab_4" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QLabel" name="label_35">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_24">
+            <property name="text">
+             <string>SocketTestQ v 2.0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="title">
+          <string>Conversation</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_10">
+          <item row="0" column="0" colspan="2">
+           <widget class="QTextEdit" name="uiUdpLog"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="uiUdpSaveLogBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="uiUdpClearLogBtn">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" rowspan="2">
+           <widget class="QGroupBox" name="groupBox_10">
+            <property name="title">
+             <string>Client</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_11">
+             <item row="3" column="1" colspan="9">
+              <widget class="QLineEdit" name="uiUdpFile">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_23">
+               <property name="text">
+                <string>File</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="5">
+              <widget class="QRadioButton" name="uiUdpRadioCRLF">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>CRLF</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2" colspan="6">
+              <widget class="QLineEdit" name="uiUdpClientIp">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>127.0.0.1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" colspan="2">
+              <widget class="QLabel" name="label_22">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Message</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="11">
+              <widget class="QPushButton" name="uiUdpSendFileBtn">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Send File</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="10">
+              <widget class="QPushButton" name="uiUdpBrowseBtn">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Browse</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="11">
+              <widget class="QPushButton" name="uiUdpSendMsgBtn">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Send</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="9" colspan="2">
+              <widget class="QSpinBox" name="uiUdpClientPort">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>65535</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="6">
+              <widget class="QRadioButton" name="uiUdpRadioLF">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>LF</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="11">
+              <widget class="QPushButton" name="uiUdpClientPortListBtn">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Port</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" colspan="2">
+              <widget class="QLabel" name="label_21">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>IP Address</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="8">
+              <widget class="QLabel" name="label_25">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Port</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="7" colspan="3">
+              <widget class="QRadioButton" name="uiUdpRadioHex">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Hexadecimal</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QRadioButton" name="uiUdpRadioNull">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>'\0'</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2" colspan="9">
+              <widget class="QLineEdit" name="uiUdpMsg">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maxLength">
+                <number>65536</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QRadioButton" name="uiUdpRadioChars">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>No termination</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="uiSSL">
+      <attribute name="title">
+       <string>SSL/TLS Settings</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_14">
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>Server's Encryption Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_17">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_37">
+            <property name="text">
+             <string>Protocol</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="uiCBProtocol">
+            <item>
+             <property name="text">
+              <string>Any Protocol</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SSLv2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SSLv3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>TLSv1.0</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_38">
+            <property name="text">
+             <string>Peer Verify Mode</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="uiCBVerifyMode">
+            <item>
+             <property name="text">
+              <string>Verify None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Query Peer</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Verify Peer</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Auto Verify Peer</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLabel" name="label_26">
+         <property name="text">
+          <string>The SSL related files's paths are reloaded each time you check the box &quot;Secure Server&quot;.
+Private Key must not require a passphrase.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="4">
+        <widget class="QGroupBox" name="groupBox_9">
+         <property name="title">
+          <string>Client's Encryption Files</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_15">
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="label_39">
+            <property name="text">
+             <string>Private key</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_40">
+            <property name="text">
+             <string>Certificate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="uiCertFileCli">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="uiKeyFileCli">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QPushButton" name="uiBtnLoadCertCli">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
              <string>Browse</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="uiClientSendFileBtn">
+          <item row="1" column="2">
+           <widget class="QPushButton" name="uiBtnLoadKeyCli">
             <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Send File</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QPushButton" name="uiClientSaveLogBtn">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>230</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiClientClearLogBtn">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>260</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Clear</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="uiClientLog">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>751</width>
-        <height>161</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QLabel" name="label_6">
-     <property name="geometry">
-      <rect>
-       <x>670</x>
-       <y>100</y>
-       <width>111</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>SocketTestQ v 2.0</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_31">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>30</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="uiServer">
-    <attribute name="title">
-     <string>Server</string>
-    </attribute>
-    <widget class="QGroupBox" name="uiServerGroupBoxConnection">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>120</y>
-       <width>771</width>
-       <height>331</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Connected Client : &lt; NONE &gt;</string>
-     </property>
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>741</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Conversation with Client</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::AutoText</enum>
-      </property>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_5">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>210</y>
-        <width>661</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Send</string>
-      </property>
-      <widget class="QWidget" name="verticalLayoutWidget_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>641</width>
-         <height>91</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>Message</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="uiServerMsg">
-            <property name="maxLength">
-             <number>65536</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="uiServerSendMsgBtn">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Send</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <property name="spacing">
-           <number>1</number>
-          </property>
-          <item>
-           <widget class="QRadioButton" name="uiServerRadioHex">
-            <property name="text">
-             <string>Hexadecimal</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="uiServerRadioNull">
-            <property name="text">
-             <string>Null-terminated string</string>
-            </property>
-            <property name="checked">
              <bool>true</bool>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="uiServerRadioChars">
-            <property name="text">
-             <string>No terminated string</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="uiServerRadioCRLF">
-            <property name="text">
-             <string>CRLF terminated string</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>File</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="uiServerFile"/>
-          </item>
-          <item>
-           <widget class="QPushButton" name="uiServerBrowseBtn">
-            <property name="enabled">
-             <bool>false</bool>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
              <string>Browse</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="uiServerSendFileBtn">
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="4">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Server's Encryption Files</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_16">
+          <item row="2" column="2" colspan="2">
+           <widget class="QLineEdit" name="uiCertFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4" colspan="2">
+           <widget class="QPushButton" name="uiBtnLoadCert">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
-             <string>Send File</string>
+             <string>Browse</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" rowspan="2">
+           <widget class="QLabel" name="label_28">
+            <property name="text">
+             <string>Certificate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>Private key</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLineEdit" name="uiKeyFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QPushButton" name="uiBtnLoadKey">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Browse</string>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QPushButton" name="uiServerSaveLogBtn">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>230</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiServerClearLogBtn">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>260</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Clear</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiServerDisconnectBtn">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>290</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Disconnect</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="uiServerLog">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>751</width>
-        <height>161</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_6">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>651</width>
-       <height>101</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Listen On</string>
-     </property>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>IP Address</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="uiServerIP">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>30</y>
-        <width>521</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>127.0.0.1</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>60</y>
-        <width>61</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiServerPortListBtn">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>60</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiServerListenBtn">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>60</y>
-        <width>111</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Start Listening</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="uiServerPort">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>60</y>
-        <width>151</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>1</number>
-      </property>
-      <property name="maximum">
-       <number>65535</number>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="uiServerSecure">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>60</y>
-        <width>121</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Secure Server</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QLabel" name="label_12">
-     <property name="geometry">
-      <rect>
-       <x>670</x>
-       <y>100</y>
-       <width>121</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>SocketTestQ v 2.0</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_30">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>30</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="uiUDP">
-    <attribute name="title">
-     <string>UDP</string>
-    </attribute>
-    <widget class="QGroupBox" name="groupBox_7">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>651</width>
-       <height>101</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Server</string>
-     </property>
-     <widget class="QLabel" name="label_19">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>101</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>IP Address</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="uiUdpServerIp">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>30</y>
-        <width>521</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>127.0.0.1</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_20">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>60</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiUdpServerPortListBtn">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>60</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiUdpServerListenBtn">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>60</y>
-        <width>111</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Start Listening</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="uiUdpServerPort">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>60</y>
-        <width>151</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>1</number>
-      </property>
-      <property name="maximum">
-       <number>65535</number>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_8">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>120</y>
-       <width>771</width>
-       <height>191</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Conversation</string>
-     </property>
-     <widget class="QTextEdit" name="uiUdpLog">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>751</width>
-        <height>161</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QLabel" name="label_24">
-     <property name="geometry">
-      <rect>
-       <x>670</x>
-       <y>100</y>
-       <width>121</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>SocketTestQ v 2.0</string>
-     </property>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_10">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>320</y>
-       <width>681</width>
-       <height>141</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Client</string>
-     </property>
-     <widget class="QLabel" name="label_22">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>50</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Message</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_23">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>110</y>
-        <width>46</width>
-        <height>13</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>File</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="uiUdpFile">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>110</y>
-        <width>421</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="uiUdpMsg">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>50</y>
-        <width>451</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="maxLength">
-       <number>65536</number>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiUdpSendMsgBtn">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>50</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Send</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiUdpSendFileBtn">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>110</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Send File</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiUdpBrowseBtn">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>110</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Browse</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="uiUdpClientIp">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>20</y>
-        <width>241</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>127.0.0.1</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_21">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>IP Address</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_25">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>20</y>
-        <width>41</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="uiUdpClientPortListBtn">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>20</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="uiUdpRadioCRLF">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>80</y>
-        <width>181</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>CRLF terminated string</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="uiUdpRadioHex">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>80</y>
-        <width>121</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Hexadecimal</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="uiUdpRadioChars">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>80</y>
-        <width>161</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>No terminated string</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="uiUdpRadioNull">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>80</y>
-        <width>181</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Null-terminated string</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="uiUdpClientPort">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>20</y>
-        <width>141</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>1</number>
-      </property>
-      <property name="maximum">
-       <number>65535</number>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QPushButton" name="uiUdpClearLogBtn">
-     <property name="geometry">
-      <rect>
-       <x>700</x>
-       <y>380</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Clear</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="uiUdpSaveLogBtn">
-     <property name="geometry">
-      <rect>
-       <x>700</x>
-       <y>350</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Save</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_32">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>30</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="uiSSL">
-    <attribute name="title">
-     <string>SSL/TLS Settings</string>
-    </attribute>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>230</y>
-       <width>761</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Server's Encryption Files</string>
-     </property>
-     <widget class="QWidget" name="verticalLayoutWidget_3">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>741</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <item>
-          <widget class="QLabel" name="label_27">
-           <property name="text">
-            <string>Private key</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="uiKeyFile"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="uiBtnLoadKey">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string>Browse</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        </widget>
        </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <item>
-          <widget class="QLabel" name="label_28">
-           <property name="text">
-            <string>Certificate</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="uiCertFile"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="uiBtnLoadCert">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string>Browse</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+       <item row="1" column="2" colspan="2">
+        <widget class="QGroupBox" name="groupBox_11">
+         <property name="title">
+          <string>Client's Encryption Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_18">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_41">
+            <property name="text">
+             <string>Protocol</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="uiCBProtocolCli">
+            <item>
+             <property name="text">
+              <string>Any Protocol</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SSLv2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SSLv3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>TLSv1.0</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_42">
+            <property name="text">
+             <string>Peer Verify Mode</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="uiCBVerifyModeCli">
+            <item>
+             <property name="text">
+              <string>Verify None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Query Peer</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Verify Peer</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Auto Verify Peer</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QWidget" name="LogoClientTab_5" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QLabel" name="label_48">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>SocketTestQ v 2.0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_36">
+         <property name="styleSheet">
+          <string notr="true">QLabel { color : red; }</string>
+         </property>
+         <property name="text">
+          <string>Warning :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
-    </widget>
-    <widget class="QLabel" name="label_26">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>10</y>
-       <width>541</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>The SSL related files's paths are reloaded each time you check the box &quot;Secure Server&quot;.</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_33">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>40</y>
-       <width>481</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Private Key must not require a passphrase.</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_34">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>30</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_35">
-     <property name="geometry">
-      <rect>
-       <x>670</x>
-       <y>100</y>
-       <width>121</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>SocketTestQ v 2.0</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_36">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>10</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel { color : red; }</string>
-     </property>
-     <property name="text">
-      <string>Warning :</string>
-     </property>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_4">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>321</width>
-       <height>141</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Server's Encryption Settings</string>
-     </property>
-     <widget class="QComboBox" name="uiCBProtocol">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>50</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Any Protocol</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>SSLv2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>SSLv3</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>TLSv1.0</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="label_37">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>50</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Protocol</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_38">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>80</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Peer Verify Mode</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="uiCBVerifyMode">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>80</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Verify None</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Query Peer</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Verify Peer</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Auto Verify Peer</string>
-       </property>
-      </item>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_9">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>350</y>
-       <width>761</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Client's Encryption Files</string>
-     </property>
-     <widget class="QWidget" name="verticalLayoutWidget_4">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>741</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_9">
-         <item>
-          <widget class="QLabel" name="label_39">
-           <property name="text">
-            <string>Private key</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="uiKeyFileCli"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="uiBtnLoadKeyCli">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string>Browse</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+     <widget class="QWidget" name="uiAbout">
+      <attribute name="title">
+       <string>About</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="4" column="2">
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>: mohamed-amine.mzoughi@laposte.net</string>
+         </property>
+        </widget>
        </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_10">
-         <item>
-          <widget class="QLabel" name="label_40">
-           <property name="text">
-            <string>Certificate</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="uiCertFileCli"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="uiBtnLoadCertCli">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="text">
-            <string>Browse</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+       <item row="3" column="1">
+        <widget class="QLabel" name="label_45">
+         <property name="text">
+          <string>Author</string>
+         </property>
+        </widget>
        </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_11">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>80</y>
-       <width>321</width>
-       <height>141</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Client's Encryption Settings</string>
-     </property>
-     <widget class="QComboBox" name="uiCBProtocolCli">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>50</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Any Protocol</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>SSLv2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>SSLv3</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>TLSv1.0</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="label_41">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>50</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Protocol</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_42">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>80</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Peer Verify Mode</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="uiCBVerifyModeCli">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>80</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Verify None</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Query Peer</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Verify Peer</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Auto Verify Peer</string>
-       </property>
-      </item>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="uiAbout">
-    <attribute name="title">
-     <string>About</string>
-    </attribute>
-    <widget class="QLabel" name="label_13">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>20</y>
-       <width>191</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Comic Sans MS</family>
-       <pointsize>20</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>SocketTestQ</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_14">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>100</y>
-       <width>231</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Version : 2.0</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_15">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>130</y>
-       <width>221</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Licence : MIT</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_16">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>160</y>
-       <width>521</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Author : Mohamed Amine Mzoughi</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_17">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>190</y>
-       <width>521</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>E-Mail : mohamed-amine.mzoughi@laposte.net</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_18">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>220</y>
-       <width>441</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Copyright : © 2016 Mohamed Amine Mzoughi</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_29">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>20</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="uiAboutText">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>250</y>
-       <width>591</width>
-       <height>191</height>
-      </rect>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="html">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>: 2.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>: MIT</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_43">
+         <property name="text">
+          <string>Version </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="10" column="1" colspan="3">
+        <widget class="QTextEdit" name="uiAboutText">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;A C++/Qt powered tool for socket testing. It can create both TCP and UDP client or server with or without SSL/TLS. It can be used to test any server or client that uses TCP or UDP protocol with or without SSL/TLS to communicate.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Inspired from SocketTest v 3.0.0 (developed in Java). I developed this tool because in SocketTest we can't send files and we are limited to CRLF terminated strings whereas in some cases we need to send null terminated strings and we can't create an SSL/TLS server.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Otherwise, it is also an attempt to show that with C++/Qt we can build interesting applications in no time... and much more faster than those built with Java ;)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Don't hesitate to email me for any suggestion.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;A C++/Qt powered tool for socket testing. It can create both TCP and UDP client or server with or without SSL/TLS. It can be used to test any server or client that uses TCP or UDP protocol with or without SSL/TLS to communicate.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Inspired from SocketTest v 3.0.0 (developed in Java). I developed this tool because in SocketTest we can't send files and we are limited to CRLF terminated strings whereas in some cases we need to send null terminated strings and we can't create an SSL/TLS server.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_44">
+         <property name="text">
+          <string>Licence</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>: Mohamed Amine Mzoughi</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_13">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>SocketTestQ</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_29">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="Image.qrc">:/Picture/original icons/ethernet.png</pixmap>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="label_46">
+         <property name="text">
+          <string>E-Mail</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>Copyright </string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="2">
+        <widget class="QLabel" name="label_47">
+         <property name="text">
+          <string>: © 2016 Mohamed Amine Mzoughi</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
-   </widget>
-  </widget>
-  <widget class="QPushButton" name="uiBtnLoadCA">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>956</x>
-     <y>292</y>
-     <width>91</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Browse</string>
-   </property>
-  </widget>
+   </item>
+  </layout>
  </widget>
  <resources>
   <include location="Image.qrc"/>

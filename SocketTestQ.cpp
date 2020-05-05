@@ -18,7 +18,6 @@ SocketTestQ::SocketTestQ(QWidget *parent) :
     // ************** Miscellaneous
     // **************
     ui->setupUi(this);
-    setFixedSize(geometry().width(),geometry().height());
     //setWindowTitle(tr("SocketTestQ v 1.0.0"));
 
     // ************** Server
@@ -257,7 +256,13 @@ void SocketTestQ::ServerSendMsg()
             packet.append( ui->uiServerMsg->text().toUtf8().at(c) );
 
         if (ui->uiServerRadioNull->isChecked())
+        {
             packet.append( (char)'\0' ); // NULL
+        }
+        else if (ui->uiServerRadioLF->isChecked())
+        {
+            packet.append( (char)'\n' ); // LF
+        }
         else if (ui->uiServerRadioCRLF->isChecked())
         {
             packet.append( (char)'\r' ); // CR
@@ -443,7 +448,13 @@ void SocketTestQ::on_uiClientSendMsgBtn_clicked()
             packet.append( ui->uiClientMsg->text().toUtf8().at(c) );
 
         if (ui->uiClientRadioNull->isChecked())
+        {
             packet.append( (char)'\0' ); // NULL
+        }
+        else if (ui->uiClientRadioLF->isChecked())
+        {
+            packet.append( (char)'\n' ); // LF
+        }
         else if (ui->uiClientRadioCRLF->isChecked())
         {
             packet.append( (char)'\r' ); // CR
@@ -650,7 +661,13 @@ void SocketTestQ::UDPSendMsg()
             packet.append( ui->uiUdpMsg->text().toUtf8().at(c) );
 
         if (ui->uiUdpRadioNull->isChecked())
+        {
             packet.append( (char)'\0' ); // NULL
+        }
+        else if (ui->uiUdpRadioLF->isChecked())
+        {
+            packet.append( (char)'\n' ); // LF
+        }
         else if (ui->uiUdpRadioCRLF->isChecked())
         {
             packet.append( (char)'\r' ); // CR
