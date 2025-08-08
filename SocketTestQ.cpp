@@ -229,26 +229,50 @@ void SocketTestQ::ServerSendMsg()
 
     if (ui->uiServerRadioHex->isChecked())
     {
-        bool bNonHexSymbol = false;
         QString strTmp = ui->uiServerMsg->text().toUpper();
 
-        for(int c=0; c < strTmp.toUtf8().length(); c++)
+        if (strTmp.length() % 2 != 0)
         {
-            if (strTmp.toUtf8().at(c) >= '0' && strTmp.toUtf8().at(c) <= '9')
+            QMessageBox::critical(this, tr("Incorrect message size"), tr("Message length must be even (1 byte = 2 hexadecimal symbols)"));
+            return;
+        }
+
+        // changer ce code par : QByteArray command = QByteArray::fromHex(hexCommand.toUtf8());
+        for (int c = 0; c < strTmp.toUtf8().length(); c += 2)
+        {
+            if (((strTmp.toUtf8().at(c) >= '0' && strTmp.toUtf8().at(c) <= '9') ||
+                 (strTmp.toUtf8().at(c) >= 'A' && strTmp.toUtf8().at(c) <= 'F')) &&
+                ((strTmp.toUtf8().at(c + 1) >= '0' && strTmp.toUtf8().at(c + 1) <= '9') ||
+                 (strTmp.toUtf8().at(c + 1) >= 'A' && strTmp.toUtf8().at(c + 1) <= 'F')))
             {
-                packet.append( (strTmp.toUtf8().at(c) - 48) );
-                qDebug() << (strTmp.toUtf8().at(c) - 48);
-            }
-            else if(strTmp.toUtf8().at(c) >= 'A' && strTmp.toUtf8().at(c) <= 'F' )
-            {
-                packet.append( (strTmp.toUtf8().at(c) - 55) );
-                qDebug() << (strTmp.toUtf8().at(c) - 55);
+                char byteFromNibbles = 0;
+
+                if (strTmp.toUtf8().at(c) >= '0' && strTmp.toUtf8().at(c) <= '9')
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c) - 48) << 4;
+                }
+                else
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c) - 55) << 4;
+                }
+
+                if (strTmp.toUtf8().at(c + 1) >= '0' && strTmp.toUtf8().at(c + 1) <= '9')
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c + 1) - 48);
+                }
+                else
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c + 1) - 55);
+                }
+
+                packet.append(byteFromNibbles);
             }
             else
-                bNonHexSymbol = true;
+            {
+                QMessageBox::critical(this, tr("Non Hexadecimal symbols"), tr("Detected non hexadecimal symbols in the message. They will not be sent."));
+                return;
+            }
         }
-        if (bNonHexSymbol)
-            QMessageBox::warning(this, tr("Non Hexadecimal symbols"), tr("Detected non hexadecimal symbols in the message. They will not be sent."));
     }
     else
     {
@@ -421,26 +445,50 @@ void SocketTestQ::on_uiClientSendMsgBtn_clicked()
 
     if (ui->uiClientRadioHex->isChecked())
     {
-        bool bNonHexSymbol = false;
         QString strTmp = ui->uiClientMsg->text().toUpper();
-
-        for(int c=0; c < strTmp.toUtf8().length(); c++)
+        
+        if (strTmp.length() % 2 != 0)
         {
-            if (strTmp.toUtf8().at(c) >= '0' && strTmp.toUtf8().at(c) <= '9')
+            QMessageBox::critical(this, tr("Incorrect message size"), tr("Message length must be even (1 byte = 2 hexadecimal symbols)"));
+            return;
+        }
+
+        // changer ce code par : QByteArray command = QByteArray::fromHex(hexCommand.toUtf8());
+        for (int c = 0; c < strTmp.toUtf8().length(); c += 2)
+        {
+            if (((strTmp.toUtf8().at(c) >= '0' && strTmp.toUtf8().at(c) <= '9') ||
+                 (strTmp.toUtf8().at(c) >= 'A' && strTmp.toUtf8().at(c) <= 'F')) &&
+                ((strTmp.toUtf8().at(c + 1) >= '0' && strTmp.toUtf8().at(c + 1) <= '9') ||
+                 (strTmp.toUtf8().at(c + 1) >= 'A' && strTmp.toUtf8().at(c + 1) <= 'F')))
             {
-                packet.append( (strTmp.toUtf8().at(c) - 48) );
-                qDebug() << (strTmp.toUtf8().at(c) - 48);
-            }
-            else if(strTmp.toUtf8().at(c) >= 'A' && strTmp.toUtf8().at(c) <= 'F' )
-            {
-                packet.append( (strTmp.toUtf8().at(c) - 55) );
-                qDebug() << (strTmp.toUtf8().at(c) - 55);
+                char byteFromNibbles = 0;
+
+                if (strTmp.toUtf8().at(c) >= '0' && strTmp.toUtf8().at(c) <= '9')
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c) - 48) << 4;
+                }
+                else
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c) - 55) << 4;
+                }
+
+                if (strTmp.toUtf8().at(c + 1) >= '0' && strTmp.toUtf8().at(c + 1) <= '9')
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c + 1) - 48);
+                }
+                else
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c + 1) - 55);
+                }
+
+                packet.append(byteFromNibbles);
             }
             else
-                bNonHexSymbol = true;
+            {
+                QMessageBox::critical(this, tr("Non Hexadecimal symbols"), tr("Detected non hexadecimal symbols in the message. They will not be sent."));
+                return;
+            }
         }
-        if (bNonHexSymbol)
-            QMessageBox::warning(this, tr("Non Hexadecimal symbols"), tr("Detected non hexadecimal symbols in the message. They will not be sent."));
     }
     else
     {
@@ -634,26 +682,50 @@ void SocketTestQ::UDPSendMsg()
 
     if (ui->uiUdpRadioHex->isChecked())
     {
-        bool bNonHexSymbol = false;
         QString strTmp = ui->uiUdpMsg->text().toUpper();
 
-        for(int c=0; c < strTmp.toUtf8().length(); c++)
+        if (strTmp.length() % 2 != 0)
         {
-            if (strTmp.toUtf8().at(c) >= '0' && strTmp.toUtf8().at(c) <= '9')
+            QMessageBox::critical(this, tr("Incorrect message size"), tr("Message length must be even (1 byte = 2 hexadecimal symbols)"));
+            return;
+        }
+
+        // changer ce code par : QByteArray command = QByteArray::fromHex(hexCommand.toUtf8());
+        for (int c = 0; c < strTmp.toUtf8().length(); c += 2)
+        {
+            if (((strTmp.toUtf8().at(c) >= '0' && strTmp.toUtf8().at(c) <= '9') ||
+                 (strTmp.toUtf8().at(c) >= 'A' && strTmp.toUtf8().at(c) <= 'F')) &&
+                ((strTmp.toUtf8().at(c + 1) >= '0' && strTmp.toUtf8().at(c + 1) <= '9') ||
+                 (strTmp.toUtf8().at(c + 1) >= 'A' && strTmp.toUtf8().at(c + 1) <= 'F')))
             {
-                packet.append( (strTmp.toUtf8().at(c) - 48) );
-                qDebug() << (strTmp.toUtf8().at(c) - 48);
-            }
-            else if(strTmp.toUtf8().at(c) >= 'A' && strTmp.toUtf8().at(c) <= 'F' )
-            {
-                packet.append( (strTmp.toUtf8().at(c) - 55) );
-                qDebug() << (strTmp.toUtf8().at(c) - 55);
+                char byteFromNibbles = 0;
+
+                if (strTmp.toUtf8().at(c) >= '0' && strTmp.toUtf8().at(c) <= '9')
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c) - 48) << 4;
+                }
+                else
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c) - 55) << 4;
+                }
+
+                if (strTmp.toUtf8().at(c + 1) >= '0' && strTmp.toUtf8().at(c + 1) <= '9')
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c + 1) - 48);
+                }
+                else
+                {
+                    byteFromNibbles |= (strTmp.toUtf8().at(c + 1) - 55);
+                }
+
+                packet.append(byteFromNibbles);
             }
             else
-                bNonHexSymbol = true;
+            {
+                QMessageBox::critical(this, tr("Non Hexadecimal symbols"), tr("Detected non hexadecimal symbols in the message. They will not be sent."));
+                return;
+            }
         }
-        if (bNonHexSymbol)
-            QMessageBox::warning(this, tr("Non Hexadecimal symbols"), tr("Detected non hexadecimal symbols in the message. They will not be sent."));
     }
     else
     {
@@ -794,10 +866,10 @@ void SocketTestQ::CheckSSLSupport()
             s_eSSLProtocol = QSsl::AnyProtocol; // auto: SSLv2, SSLv3, or TLSv1.0
             break;
         case 1: // SSLv2
-            s_eSSLProtocol = QSsl::SslV2;
+            //s_eSSLProtocol = QSsl::SslV2;
             break;
         case 2: // SSLv3
-            s_eSSLProtocol = QSsl::SslV3;
+            //s_eSSLProtocol = QSsl::SslV3;
             break;
         case 3: // TLSv1.0
             s_eSSLProtocol = QSsl::TlsV1_0;
@@ -862,10 +934,10 @@ void SocketTestQ::CheckSSLServerSetup()
             CSSLServer::s_eSSLProtocol = QSsl::AnyProtocol;
             break;
         case 1: // SSLv2
-            CSSLServer::s_eSSLProtocol = QSsl::SslV2;
+            //CSSLServer::s_eSSLProtocol = QSsl::SslV2;
             break;
         case 2: // SSLv3
-            CSSLServer::s_eSSLProtocol = QSsl::SslV3;
+            //CSSLServer::s_eSSLProtocol = QSsl::SslV3;
             break;
         case 3: // TLSv1.0
             CSSLServer::s_eSSLProtocol = QSsl::TlsV1_0;
